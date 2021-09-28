@@ -1,4 +1,5 @@
 from core.db import Base
+from user.models import User
 from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column, String, Integer, DateTime, ForeignKey, Boolean
@@ -14,4 +15,4 @@ class Task(Base):
     date = Column(DateTime)
     is_completed = Column(Boolean, default=False)
     user = Column(Integer, ForeignKey("user.id"))
-    user_id = relationship("User")
+    user_id = relationship(User)
