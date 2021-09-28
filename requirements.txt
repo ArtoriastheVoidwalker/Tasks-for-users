@@ -1,0 +1,4 @@
+sqlalchemy
+uvicorn
+psycopg2-binary
+alembic
