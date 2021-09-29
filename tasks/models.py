@@ -14,5 +14,5 @@ class Task(Base):
     text = Column(String(255))
     date = Column(DateTime)
     is_completed = Column(Boolean, default=False)
-    user = Column(Integer, ForeignKey("user.id"))
-    user_id = relationship(User)
+    # user = Column(Integer, ForeignKey("user.id"))
+    # user_id = relationship(User)
