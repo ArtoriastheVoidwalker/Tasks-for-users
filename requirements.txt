@@ -22,10 +22,6 @@ MarkupSafe
 matplotlib
 numpy
 passlib
-Pillow
-pkg-resources
-psycopg2-binary
-pycparser
 pydantic
 PyJWT
 pyparsing
