@@ -14,7 +14,8 @@ class Task(Base):
     text = Column(String(355))
     date = Column(DateTime, server_default=sql.func.now())
     is_completed = Column(Boolean, default=False)
-    user = Column(ForeignKey('user.id'))
+    is_important = Column(Boolean, default=False)
+    user = Column(String, ForeignKey('user.id'))
     user_id = relationship("User")
 
 

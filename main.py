@@ -1,19 +1,11 @@
 from fastapi import FastAPI
 from core.db import database
 from routers import routers
-from user.logic import jwt_authentication, get_user_manager
+from user.logic import jwt_authentication
 from typing import Optional
-from user.model_pyndantic import User, UserCreate, UserUpdate, UserDB
-from fastapi_users import FastAPIUsers
+from core.fast_users import fastapi_users
 
-fastapi_users = FastAPIUsers(
-    get_user_manager,
-    [jwt_authentication],
-    User,
-    UserCreate,
-    UserUpdate,
-    UserDB,
-)
+
 app = FastAPI()
 
 

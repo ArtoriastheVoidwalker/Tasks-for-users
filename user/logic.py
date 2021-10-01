@@ -1,11 +1,12 @@
 from fastapi_users.authentication import JWTAuthentication
 from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
 from .models import User
-from .model_pyndantic import UserDB, UserCreate
+from .model_pyndantic import UserDB, UserCreate, UserUpdate
 from core.db import database
 from fastapi_users import BaseUserManager
 from typing import Optional
 from fastapi import Depends, Request
+
 
 users = User.__table__
 
