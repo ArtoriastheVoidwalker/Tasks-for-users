@@ -1,15 +1,15 @@
 from sqlalchemy.orm import Session
-from .models import Task
+
+from core.db import database
+from .models import Task, tasks
 from .model_pyndantic import TaskCreate
 
 
-def get_tasks_list(db: Session):
-    return db.query(Task).all()
+async def get_tasks_list():
+    return await database.fetch_all(query=tasks.select())
 
 
-def create_task(db: Session, item: TaskCreate):
-    task = Task(**item.dict())
-    db.add(task)
-    db.commit()
-    db.refresh(task)
-    return task
+async def create_task(item: TaskCreate):
+    task = tasks.insert().values(**item.dict())
+    return await database.execute(task)
+

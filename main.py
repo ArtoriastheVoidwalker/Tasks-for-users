@@ -1,16 +1,10 @@
 from fastapi import FastAPI
-from fastapi import Depends
-
 from core.db import database
 from routers import routers
-from starlette.requests import Request
-from starlette.responses import Response
-from fastapi_users import FastAPIUsers
-from user.logic import get_user_manager, jwt_authentication, get_user_db
-from user.model_pyndantic import User, UserCreate, UserUpdate, UserDB
+from user.logic import jwt_authentication, get_user_manager
 from typing import Optional
-
-app = FastAPI()
+from user.model_pyndantic import User, UserCreate, UserUpdate, UserDB
+from fastapi_users import FastAPIUsers
 
 fastapi_users = FastAPIUsers(
     get_user_manager,
@@ -20,20 +14,7 @@ fastapi_users = FastAPIUsers(
     UserUpdate,
     UserDB,
 )
-
-
-# @app.middleware("http")
-# async def db_session_middleware(request: Request, call_next):
-#     response = Response("Internal server error", status_code=500)
-#     try:
-#         request.state.db = SessionLocal()
-#         response = await call_next(request)
-#     finally:
-#         request.state.db.close()
-#     return response
-# @app.get("/authenticated-route")
-# async def authenticated_route(user: UserDB = Depends(get_user_db)):
-#     return {"message": f"Hello {user.email}!"}
+app = FastAPI()
 
 
 @app.on_event("startup")

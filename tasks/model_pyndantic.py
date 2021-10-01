@@ -5,15 +5,13 @@ from datetime import datetime
 class TaskBase(BaseModel):
     title: str
     text: str
-    date: datetime
-
-    class Config:
-        orm_mode = True
 
 
 class TitleList(TaskBase):
     id: int
+    date: datetime
 
 
 class TaskCreate(TaskBase):
-    pass
+    class Config:
+        orm_mode = True

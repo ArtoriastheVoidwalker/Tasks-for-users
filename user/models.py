@@ -9,6 +9,9 @@ class User(Base, SQLAlchemyBaseUserTable):
     login = Column(String, unique=True)
     date = Column(DateTime)
 
+
+users = User.__table__
+
 # class User(Base):
 #     __tablename__ = "user"
 #     id = Column(Integer, primary_key=True, index=True, unique=True)

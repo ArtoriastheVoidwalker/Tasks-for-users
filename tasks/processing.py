@@ -4,14 +4,15 @@ from core.utils import get_db
 from . import service
 from typing import List
 from .model_pyndantic import TaskCreate, TitleList
+
 router = APIRouter()
 
 
 @router.get("/", response_model=List[TitleList])
-def tasks_list(db: Session = Depends(get_db)):
-    return service.get_tasks_list(db)
+async def tasks_list():
+    return await service.get_tasks_list()
 
 
 @router.post("/")
-def tasks_list(item: TaskCreate, db: Session = Depends(get_db), ):
-    return service.create_task(db, item)
+async def tasks_create(item: TaskCreate):
+    return await service.create_task(item)
