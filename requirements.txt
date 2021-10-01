@@ -23,7 +23,6 @@ matplotlib
 numpy
 passlib
 Pillow
-pip
 pkg-resources
 psycopg2-binary
 pycparser
