@@ -11,6 +11,7 @@ email-validator
 fastapi
 fastapi-users
 fastapi-users-db-sqlalchemy
+gunicorn
 greenlet
 h11
 idna
@@ -27,6 +28,7 @@ PyJWT
 pyparsing
 python-dateutil
 python-multipart
+psycopg2-binary
 response
 scipy
 setuptools
