@@ -1,5 +1,4 @@
-from datetime import datetime
-from core.db import Base
+from base.db import Base
 from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column, String, Integer, DateTime, ForeignKey, Boolean, sql
@@ -7,7 +6,7 @@ from sqlalchemy import (
 
 
 class Task(Base):
-    __tablename__ = "users_tasks"
+    __tablename__ = "task"
 
     id = Column(Integer, primary_key=True, index=True, unique=True)
     title = Column(String)

@@ -1,10 +1,7 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
-from core.utils import get_db
-from user.models import User
+from fastapi import APIRouter
 from . import service
 from typing import List
-from .model_pyndantic import TaskCreate, TitleList
+from schema.task_schema import TaskCreate, TitleList
 
 router = APIRouter()
 

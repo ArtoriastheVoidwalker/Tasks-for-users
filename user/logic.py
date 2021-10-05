@@ -1,11 +1,15 @@
-from fastapi_users.authentication import JWTAuthentication
-from fastapi_users.db import SQLAlchemyBaseUserTable, SQLAlchemyUserDatabase
-from .models import User
-from .model_pyndantic import UserDB, UserCreate, UserUpdate
-from core.db import database
+from core.security import SECRET
+from model.user_model import User
+from base.db import database
 from fastapi_users import BaseUserManager
 from typing import Optional
-from fastapi import Depends, Request
+from fastapi_users.db import SQLAlchemyUserDatabase
+from fastapi import (
+    Depends, Request
+)
+from schema.user_schema import (
+    UserDB, UserCreate
+)
 
 
 users = User.__table__
@@ -15,9 +19,8 @@ def get_user_db():
     yield SQLAlchemyUserDatabase(UserDB, database, users)
 
 
-SECRET = "fferbfbt54643d56d4sf6b54nv464d3"
-
-jwt_authentication = JWTAuthentication(secret=SECRET, lifetime_seconds=3600)
+def get_user_manager(user_db=Depends(get_user_db)):
+    yield UserManager(user_db)
 
 
 class UserManager(BaseUserManager[UserCreate, UserDB]):
@@ -37,19 +40,3 @@ class UserManager(BaseUserManager[UserCreate, UserDB]):
             self, user: UserDB, token: str, request: Optional[Request] = None
     ):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
-
-
-def get_user_manager(user_db=Depends(get_user_db)):
-    yield UserManager(user_db)
-
-
-# SECRET = "SECRET"
-# users = User.__table__
-#
-# user_db = SQLAlchemyUserDatabase(UserDB, SessionLocal, users)
-#
-# auth_backends = []
-#
-# jwt_authentication = JWTAuthentication(secret=SECRET, lifetime_seconds=3600)
-#
-# auth_backends.append(jwt_authentication)

@@ -8,7 +8,7 @@ from alembic import context
 
 sys.path = ['', '..'] + sys.path[1:]
 
-from core.db import SQLALCHEMY_DATABASE_URL
+from base.db import SQLALCHEMY_DATABASE_URL
 from core.base import Base
 
 # this is the Alembic Config object, which provides
