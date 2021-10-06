@@ -4,6 +4,8 @@ from base.db import database
 from fastapi_users import BaseUserManager
 from typing import Optional
 from fastapi_users.db import SQLAlchemyUserDatabase
+import uuid
+from model.user_model import users########!!!!!!!!!!!!!!
 from fastapi import (
     Depends, Request
 )
@@ -32,11 +34,11 @@ class UserManager(BaseUserManager[UserCreate, UserDB]):
         print(f"User {user.id} has registered.")
 
     async def on_after_forgot_password(
-            self, user: UserDB, token: str, request: Optional[Request] = None
+            self, user: UserDB, token: uuid, request: Optional[Request] = None
     ):
         print(f"User {user.id} has forgot their password. Reset token: {token}")
 
     async def on_after_request_verify(
-            self, user: UserDB, token: str, request: Optional[Request] = None
+            self, user: UserDB, token: uuid, request: Optional[Request] = None
     ):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
